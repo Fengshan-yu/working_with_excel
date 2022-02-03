@@ -1,8 +1,8 @@
 from openpyxl import Workbook, load_workbook
 from openpyxl.utils import get_column_letter
 
-wb = load_workbook("mouse.xlsx")
-ws = wb["TBI"]
+wb = load_workbook("apple.xlsx")
+ws = wb["usb"]
 
 
 def get_row_data(row):
@@ -20,69 +20,69 @@ ws_1 = wb["temp"]
 for row in range(1, ws.max_row + 1):
     for col in range(1, 16):
         char = get_column_letter(col)
-        if ws[char + str(row)].value == "WT":
+        if ws[char + str(row)].value == "white":
             ws_1.append(get_row_data(row))
 
-wb.save("mouse.xlsx")
+wb.save("apple.xlsx")
 
-wb = load_workbook("mouse.xlsx")
+wb = load_workbook("apple.xlsx")
 ws = wb["temp"]
 
-wb.create_sheet("temp_sham")
-wb.create_sheet("temp_TBI")
-ws_2 = wb["temp_sham"]
-ws_3 = wb["temp_TBI"]
+wb.create_sheet("temp_a")
+wb.create_sheet("temp_b")
+ws_2 = wb["temp_a"]
+ws_3 = wb["temp_b"]
 
 for row in range(1, ws.max_row + 1):
     for col in range(1, 16):
         char = get_column_letter(col)
-        if ws[char + str(row)].value == "s-sham":
+        if ws[char + str(row)].value == "12W:
             ws_2.append(get_row_data(row))
 
 for row in range(1, ws.max_row + 1):
     for col in range(1, 16):
         char = get_column_letter(col)
-        if ws[char + str(row)].value == "s-TBI":
+        if ws[char + str(row)].value == "20W":
             ws_3.append(get_row_data(row))
 
 del wb["temp"]
-wb.save("mouse.xlsx")
+wb.save("apple.xlsx")
 
-wb = load_workbook("mouse.xlsx")
-ws = wb["temp_sham"]
+wb = load_workbook("apple.xlsx")
+ws = wb["temp_a"]
 
-wb.create_sheet("sorted_WT")
-ws_4 = wb["sorted_WT"]
+wb.create_sheet("sorted_apple")
+ws_4 = wb["sorted_apple"]
 for row in range(1, ws.max_row + 1):
     for col in range(1, 16):
         char = get_column_letter(col)
-        if ws[char + str(row)].value == "F":
+        if ws[char + str(row)].value == "white":
             ws_4.append(get_row_data(row))
 
 for row in range(1, ws.max_row + 1):
     for col in range(1, 16):
         char = get_column_letter(col)
-        if ws[char + str(row)].value == "M":
+        if ws[char + str(row)].value == "black":
             ws_4.append(get_row_data(row))
 
-del wb["temp_sham"]
-wb.save("mouse.xlsx")
+del wb["temp_a"]
+wb.save("apple.xlsx")
 
-wb = load_workbook("mouse.xlsx")
-ws = wb["temp_TBI"]
-ws_4 = wb["sorted_WT"]
+wb = load_workbook("apple.xlsx")
+ws = wb["temp_b"]
+ws_4 = wb["sorted_apple"]
 
 for row in range(1, ws.max_row + 1):
     for col in range(1, 16):
         char = get_column_letter(col)
-        if ws[char + str(row)].value == "F":
+        if ws[char + str(row)].value == "white":
             ws_4.append(get_row_data(row))
 
 for row in range(1, ws.max_row + 1):
     for col in range(1, 16):
         char = get_column_letter(col)
-        if ws[char + str(row)].value == "M":
+        if ws[char + str(row)].value == "black":
             ws_4.append(get_row_data(row))
 
-del wb["temp_TBI"]
-wb.save("mouse.xlsx")
+del wb["temp_b"]
+wb.save("apple.xlsx")
